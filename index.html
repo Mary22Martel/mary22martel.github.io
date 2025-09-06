@@ -3,315 +3,1245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marycielo Martel - Desarrolladora Web</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'pink': {
-                            500: '#ec4899',
-                            600: '#db2777',
-                        },
-                        'purple': {
-                            500: '#8b5cf6',
-                            600: '#7c3aed',
-                        }
-                    }
-                }
+    <title>Marycielo Martel - Desarrolladora Web Full Stack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #7E3F8F;
+            --primary-dark: #653365;
+            --primary-light: #9B59B6;
+            --accent: #F59E0B;
+            --accent-alt: #F177C0;
+            --text-light: #FFFFFF;
+            --text-dark: #333333;
+            --text-muted: rgba(255, 255, 255, 0.8);
+            --text-muted-dark: rgba(0, 0, 0, 0.7);
+            --bg-dark: #1A1A2E;
+            --bg-light: #FFFFFF;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --bg-card-dark: rgba(0, 0, 0, 0.05);
+            --bg-card-hover: rgba(255, 255, 255, 0.1);
+            --bg-card-hover-dark: rgba(0, 0, 0, 0.1);
+            --border-light: rgba(255, 255, 255, 0.15);
+            --border-dark: rgba(0, 0, 0, 0.1);
+            --success: #4db848;
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.3);
+            --profile-name-light: #333333;
+            --profile-name-dark: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--bg-dark) 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: var(--transition);
+        }
+
+        body.light-mode {
+            background: linear-gradient(135deg, #e0e0e0 0%, var(--bg-light) 100%);
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            transition: var(--transition);
+            width: calc(100% - 40px);
+            max-width: 700px;
+            background: rgba(26, 26, 46, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 50px;
+            padding: 8px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-md);
+        }
+
+        .light-mode .nav-container {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--border-dark);
+        }
+
+        .nav-tabs {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 10px 16px;
+            border-radius: 25px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: var(--transition);
+            position: relative;
+            background: transparent;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .light-mode .nav-tab {
+            color: var(--text-muted-dark);
+        }
+
+        .nav-tab:hover {
+            color: var(--text-light);
+            background: var(--bg-card);
+        }
+
+        .light-mode .nav-tab:hover {
+            color: var(--text-dark);
+            background: var(--bg-card-dark);
+        }
+
+        .nav-tab i {
+            font-size: 16px;
+        }
+
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            margin-left: 8px;
+        }
+
+        .light-mode .theme-toggle {
+            background: var(--bg-card-dark);
+            border: 1px solid var(--border-dark);
+            color: var(--text-muted-dark);
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-light);
+            transform: rotate(30deg);
+        }
+
+        .light-mode .theme-toggle:hover {
+            background: var(--bg-card-hover-dark);
+            color: var(--text-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            max-width: 900px;
+            margin: 120px auto 80px;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                margin: 100px auto 60px;
+                padding-top: 20px;
             }
         }
-    </script>
-    <style>
-        .gradient-text {
-            background: linear-gradient(45deg, #ec4899, #8b5cf6);
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .profile-image-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-light);
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+
+        .profile-image-container::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            opacity: 0;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+
+        .profile-image-container:hover::after {
+            opacity: 1;
+        }
+
+        .profile-image-container:hover .profile-image {
+            transform: scale(1.05);
+        }
+
+        .profile-name {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--profile-name-dark);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .light-mode .profile-name {
+            background: var(--profile-name-light);
+            -webkit-background-clip: text;
             background-clip: text;
         }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+
+        .profile-name::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
         }
-        
-        .card-hover:hover {
-            transform: translateY(-4px);
-            transition: transform 0.3s ease;
+
+        .profile-badge {
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: 25px;
+            padding: 10px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
         }
-        
-        .fade-in {
-            animation: fadeIn 0.6s ease-in-out;
+
+        .profile-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 3s infinite;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .hero-description {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .light-mode .hero-description {
+            color: var(--text-muted-dark);
+        }
+
+        .hero-description .highlight {
+            color: var(--accent-alt);
+            font-weight: 600;
+        }
+
+        .hero-description .rocket {
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 50px;
+            padding: 12px 20px;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .light-mode .social-link {
+            background: var(--bg-card-dark);
+            border: 1px solid var(--border-dark);
+            color: var(--text-dark);
+        }
+
+        .social-link:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .light-mode .social-link:hover {
+            background: var(--bg-card-hover-dark);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        /* Section Titles */
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            color: var(--text-light);
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .light-mode .section-title {
+            color: var(--text-dark);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .section-icon {
+            font-size: 24px;
+            color: var(--accent);
+        }
+
+        /* Experience Section - New Design */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 992px) {
+            .experience-grid {
+                grid-template-columns: 1fr 2fr;
+                align-items: start;
+                gap: 40px;
+            }
+        }
+
+        .experience-header {
+            padding: 20px;
+            background: var(--bg-card);
+            border-radius: 15px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .light-mode .experience-header {
+            background: var(--bg-card-dark);
+            border: 1px solid var(--border-dark);
+        }
+
+        .experience-header:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .company {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .light-mode .company {
+            color: var(--text-dark);
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--accent);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .job-description {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .light-mode .job-description {
+            color: var(--text-muted-dark);
+        }
+
+        .learn-more-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .learn-more-link:hover {
+            gap: 12px;
+        }
+
+        .experience-content {
+            padding: 20px;
+            background: var(--bg-card);
+            border-radius: 15px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .light-mode .experience-content {
+            background: var(--bg-card-dark);
+            border: 1px solid var(--border-dark);
+        }
+
+        .experience-content:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .light-mode .project-card {
+            background: var(--bg-card-dark);
+            border: 1px solid var(--border-dark);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+
+        .project-image-container {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+            transform: translateY(20px);
+        }
+
+        .project-card:hover .project-link {
+            transform: translateY(0);
+        }
+
+        .project-link:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .light-mode .project-title {
+            color: var(--text-dark);
+        }
+
+        .tech-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .light-mode .tech-tag {
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-dark);
+            color: var(--text-dark);
+        }
+
+        .project-description {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .light-mode .project-description {
+            color: var(--text-muted-dark);
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .about-content {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+        }
+
+        .about-text {
+            flex: 2;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .light-mode .about-text p {
+            color: var(--text-muted-dark);
+        }
+
+        .about-text strong {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .light-mode .about-text strong {
+            color: var(--text-dark);
+        }
+
+        .about-image-container {
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-profile-image {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 3px solid var(--primary-light);
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+
+        .about-profile-image:hover {
+            transform: scale(1.03);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 100px;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .light-mode .footer {
+            border-top: 1px solid var(--border-dark);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        .light-mode .footer-logo {
+            color: var(--text-dark);
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .light-mode .footer-text {
+            color: var(--text-muted-dark);
+        }
+
+        .footer-link {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .light-mode .footer-link {
+            color: var(--text-dark);
+        }
+
+        .footer-link:hover {
+            color: var(--accent);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .light-mode .footer-social a {
+            color: var(--text-muted-dark);
+        }
+
+        .footer-social a:hover {
+            color: var(--accent);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--text-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-light);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .nav-container {
+                top: 10px;
+                width: calc(100% - 20px);
+                padding: 6px;
+            }
+
+            .nav-tab {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .nav-tab i {
+                font-size: 14px;
+            }
+
+            .theme-toggle {
+                width: 35px;
+                height: 35px;
+            }
+
+            .hero {
+                margin: 100px auto 60px;
+                padding-top: 30px;
+            }
+
+            .profile-name {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .about-content {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-name {
+                font-size: 1.8rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .social-link {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .job-title {
+                font-size: 1.2rem;
+            }
+
+            .company {
+                font-size: 1rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Header -->
-    <header class="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-6">
-                <div class="flex items-center">
-                    <h1 class="text-2xl font-bold gradient-text">Marycielo Martel</h1>
-                    <span class="ml-3 text-gray-500 text-sm">Desarrolladora Web</span>
-                </div>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#experiencia" class="text-gray-600 hover:text-pink-500 transition-colors">Experiencia</a>
-                    <a href="#proyectos" class="text-gray-600 hover:text-pink-500 transition-colors">Proyectos</a>
-                    <a href="#sobre-mi" class="text-gray-600 hover:text-pink-500 transition-colors">Sobre mí</a>
-                    <a href="#contacto" class="text-gray-600 hover:text-pink-500 transition-colors">Contacto</a>
-                </nav>
-            </div>
-        </div>
-    </header>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container" id="navContainer">
+        <nav class="nav-tabs">
+            <a href="#experiencia" class="nav-tab active"><i class="fas fa-briefcase"></i> Experiencia</a>
+            <a href="#proyectos" class="nav-tab"><i class="fas fa-code"></i> Proyectos</a>
+            <a href="#habilidades" class="nav-tab"><i class="fas fa-star"></i> Habilidades</a>
+            <a href="#sobre-mi" class="nav-tab"><i class="fas fa-user"></i> Sobre mí</a>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </div>
 
     <!-- Hero Section -->
-    <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto fade-in">
-        <div class="text-center mb-16">
-            <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                Desarrollo soluciones web personalizadas para negocios e instituciones, con un enfoque en 
-                mejorar su presencia digital y optimizar procesos internos. 🚀 Lleva tu negocio al siguiente 
-                nivel con sitios web atractivos y funcionales.
+    <section class="hero">
+        <div class="container">
+            <div class="profile-section">
+                <div class="profile-image-container">
+                    <img src="./marycielo.jpeg" alt="Marycielo Martel" class="profile-image">
+                </div>
+                <h1 class="profile-name">Marycielo Martel</h1>
+                <div class="profile-badge">Desarrolladora Web Full Stack</div>
+            </div>
+
+            <p class="hero-description">
+                Desarrollo <span class="highlight">soluciones web personalizadas para negocios e instituciones</span>, 
+                con un enfoque en mejorar su presencia digital y optimizar procesos internos. 
+                <span class="rocket">🚀</span> <span class="highlight">Lleva tu negocio al siguiente nivel</span> 
+                con sitios web atractivos y funcionales.
             </p>
-        </div>
 
-        <!-- Experiencia laboral -->
-        <section id="experiencia" class="mb-16">
-            <h2 class="text-2xl font-bold text-gray-900 mb-8">Experiencia laboral</h2>
-            
-            <!-- Desarrollador Full Stack -->
-            <div class="mb-8 p-6 bg-white rounded-lg shadow-sm border border-gray-200 card-hover">
-                <div class="flex items-start justify-between mb-4">
-                    <div>
-                        <div class="flex items-center mb-2">
-                            <div class="w-3 h-3 bg-pink-500 rounded-full mr-3"></div>
-                            <h3 class="text-xl font-semibold text-gray-900">Desarrollador Full Stack</h3>
-                        </div>
-                        <p class="text-pink-600 font-medium">Freelance</p>
-                    </div>
-                    <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">2022 - Presente</span>
-                </div>
-                <p class="text-gray-600 mb-4">
-                    Desarrollo de soluciones web personalizadas para negocios e instituciones, con un enfoque en 
-                    mejorar su presencia digital y optimizar procesos internos. Implemento prácticas modernas de 
-                    desarrollo, integraciones a medida y pasarelas de pago cuando es necesario.
-                </p>
-                <div class="space-y-2">
-                    <p class="text-sm text-gray-600">
-                        <strong>Proyectos destacados:</strong>
-                    </p>
-                    <ul class="text-sm text-gray-600 space-y-1 ml-4">
-                        <li>• <strong>Plataforma de Comercio Electrónico para Ferias Agrícolas:</strong> Proyecto de tesis que integra catálogo de productos, pasarela de pago y gestión de pedidos.</li>
-                        <li>• <strong>Sistema de Gestión Documentaria:</strong> Herramienta interna para control y administración documental para empresa de fotocopiadoras.</li>
-                        <li>• <strong>Páginas Web para Negocios:</strong> Diseño y desarrollo de sitios para hoteles y pequeñas empresas.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Desarrolladora Web - Abitech -->
-            <div class="mb-8 p-6 bg-white rounded-lg shadow-sm border border-gray-200 card-hover">
-                <div class="flex items-start justify-between mb-4">
-                    <div>
-                        <div class="flex items-center mb-2">
-                            <div class="w-3 h-3 bg-pink-500 rounded-full mr-3"></div>
-                            <h3 class="text-xl font-semibold text-gray-900">Desarrolladora Web</h3>
-                        </div>
-                        <p class="text-pink-600 font-medium">Abitech</p>
-                    </div>
-                    <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">Julio - Presente</span>
-                </div>
-                <p class="text-gray-600">
-                    Desarrollo de plataforma para psicólogos enfocada en gestión de historias clínicas y seguimiento 
-                    de pacientes. Participación en frontend (Vue.js, Tailwind CSS) e integración con backend 
-                    (Laravel), aplicando metodologías ágiles y buenas prácticas.
-                </p>
-            </div>
-
-            <!-- Practicante - Asstic -->
-            <div class="mb-8 p-6 bg-white rounded-lg shadow-sm border border-gray-200 card-hover">
-                <div class="flex items-start justify-between mb-4">
-                    <div>
-                        <div class="flex items-center mb-2">
-                            <div class="w-3 h-3 bg-pink-500 rounded-full mr-3"></div>
-                            <h3 class="text-xl font-semibold text-gray-900">Practicante de Desarrollo Frontend</h3>
-                        </div>
-                        <p class="text-pink-600 font-medium">Asstic E.I.R.L.</p>
-                    </div>
-                    <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">Agosto 2024 – Abril 2025</span>
-                </div>
-                <p class="text-gray-600">
-                    Participación en el desarrollo del sistema "Copiloto UDH", plataforma que gestiona todo el 
-                    proceso de titulación universitaria. Implementación de interfaces, integración con APIs y 
-                    backend en Laravel, y apoyo en análisis y pruebas de funcionalidades.
-                </p>
-                <a href="#" class="text-pink-600 text-sm hover:text-pink-700 transition-colors inline-flex items-center mt-3">
-                    Saber más
-                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                    </svg>
+            <div class="social-links">
+                <a href="mailto:marycielozmartel@gmail.com" class="social-link">
+                    <i class="fas fa-envelope"></i> Contáctame
+                </a>
+                <a href="https://github.com/Mary22Martel" class="social-link" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/marycielo-martel/" target="_blank" class="social-link">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="CV.pdf" download class="social-link">
+                    <i class="fas fa-download"></i> Descargar CV
                 </a>
             </div>
-        </section>
-
-        <!-- Proyectos -->
-        <section id="proyectos" class="mb-16">
-            <h2 class="text-2xl font-bold text-gray-900 mb-8">Proyectos</h2>
-            
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- Proyecto 1 -->
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden card-hover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Copiloto UDH</h3>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Vue.js</span>
-                            <span class="px-3 py-1 bg-red-100 text-red-800 text-xs rounded-full">Laravel</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">MySQL</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-4">
-                            Sistema integral de gestión de trámites de titulación universitaria. Plataforma que 
-                            optimiza todo el proceso desde la solicitud hasta la entrega del título, con interfaces 
-                            intuitivas y seguimiento en tiempo real.
-                        </p>
-                        <a href="#" class="text-pink-600 text-sm hover:text-pink-700 transition-colors inline-flex items-center">
-                            Ver proyecto
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Proyecto 2 -->
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden card-hover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-3">E-commerce Agrícola</h3>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">Vue.js</span>
-                            <span class="px-3 py-1 bg-red-100 text-red-800 text-xs rounded-full">Laravel</span>
-                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Stripe</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-4">
-                            Proyecto de tesis: plataforma de comercio electrónico especializada en ferias agrícolas. 
-                            Incluye catálogo de productos, gestión de pedidos y pasarela de pago integrada.
-                        </p>
-                        <a href="#" class="text-pink-600 text-sm hover:text-pink-700 transition-colors inline-flex items-center">
-                            Ver proyecto
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Proyecto 3 -->
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden card-hover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Sistema Gestión Documentaria</h3>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-red-100 text-red-800 text-xs rounded-full">Laravel</span>
-                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">JavaScript</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">MySQL</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-4">
-                            Herramienta interna para empresa de fotocopiadoras que permite el control y 
-                            administración documental eficiente. Incluye búsqueda avanzada y categorización.
-                        </p>
-                        <a href="#" class="text-pink-600 text-sm hover:text-pink-700 transition-colors inline-flex items-center">
-                            Ver proyecto
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Proyecto 4 -->
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden card-hover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Plataforma para Psicólogos</h3>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">Vue.js</span>
-                            <span class="px-3 py-1 bg-cyan-100 text-cyan-800 text-xs rounded-full">Tailwind CSS</span>
-                            <span class="px-3 py-1 bg-red-100 text-red-800 text-xs rounded-full">Laravel</span>
-                        </div>
-                        <p class="text-gray-600 text-sm mb-4">
-                            Sistema especializado en gestión de historias clínicas y seguimiento de pacientes. 
-                            Diseñado para optimizar el trabajo de profesionales de la salud mental.
-                        </p>
-                        <a href="#" class="text-pink-600 text-sm hover:text-pink-700 transition-colors inline-flex items-center">
-                            Ver proyecto
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sobre mí -->
-        <section id="sobre-mi" class="mb-16">
-            <h2 class="text-2xl font-bold text-gray-900 mb-8">Sobre mí</h2>
-            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                <p class="text-gray-600 leading-relaxed mb-4">
-                    Mi nombre es <strong>Marycielo Martel</strong>. Bachiller en Ingeniería de Sistemas e Informática 
-                    por la Universidad de Huánuco (UDH).
-                </p>
-                <p class="text-gray-600 leading-relaxed mb-4">
-                    Durante mi etapa académica, he alcanzado logros significativos, como la publicación de un artículo 
-                    científico en LACCEI 2025 sobre el sistema "Copiloto UDH", además de participar en una pasantía 
-                    académica internacional en el Tecnológico de Antioquia, Medellín, Colombia.
-                </p>
-                <p class="text-gray-600 leading-relaxed">
-                    Actualmente, me desempeño como <strong>Desarrolladora Web Full Stack</strong>, complementando mi trabajo 
-                    con conocimientos en diseño UX/UI, lo que aporta un valor añadido a cada uno de mis proyectos.
-                </p>
-            </div>
-        </section>
-
-        <!-- Contacto -->
-        <section id="contacto" class="text-center">
-            <h2 class="text-2xl font-bold text-gray-900 mb-8">Contacto</h2>
-            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-                <p class="text-gray-600 mb-6">
-                    ¿Tienes un proyecto en mente? ¡Hablemos y hagámoslo realidad juntos!
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
-                    <a href="mailto:marycielomartelno22@gmail.com" class="flex items-center text-pink-600 hover:text-pink-700 transition-colors">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                        marycielomartelno22@gmail.com
-                    </a>
-                    <a href="tel:+51917840637" class="flex items-center text-pink-600 hover:text-pink-700 transition-colors">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                        </svg>
-                        917 840637
-                    </a>
-                    <a href="https://github.com/Mary22Martel" target="_blank" class="flex items-center text-pink-600 hover:text-pink-700 transition-colors">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                        Mary22Martel
-                    </a>
-                </div>
-            </div>
-        </section>
+        </div>
     </section>
 
-    <footer class="bg-gray-800 text-white py-8 mt-20">
-        <div class="max-w-4xl mx-auto text-center px-4">
-            <p>&copy; 2025 Marycielo Martel. Todos los derechos reservados.</p>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Experience Section -->
+        <section id="experiencia">
+            <h2 class="section-title">
+                <span class="section-icon"><i class="fas fa-briefcase"></i></span>
+                Experiencia laboral
+            </h2>
+
+            <div class="experience-grid" style="margin-top: 30px;">
+                <div class="experience-header">
+                    <h3 class="job-title">Desarrollador Web </h3>
+                    <div class="company">
+                        <span>Freelance</span>
+                    </div>
+                    <div class="date-badge">Actualmente...</div>
+                </div>
+
+                <div class="experience-content">
+                    <p class="job-description">
+                        Desarrollo sitios web para personas y negocios interesados en mejorar su presencia digital mediante soluciones web efectivas, implementando prácticas modernas de desarrollo.
+                    </p>
+                </div>
+            </div>
+
+            <div class="experience-grid" style="margin-top: 30px;">
+                <div class="experience-header">
+                    <h3 class="job-title">Desarrolladora Web</h3>
+                    <div class="company">
+                        <span>Abitech</span>
+                    </div>
+                    <div class="date-badge">Julio - Presente</div>
+                </div>
+
+                <div class="experience-content">
+                    <p class="job-description">
+                        Desarrollo de plataforma para psicólogos que gestiona historias clínicas y seguimiento de pacientes, participando en frontend (Vue.js, Tailwind CSS) e integraciones backend (Laravel) con metodologías ágiles.
+                    </p>
+                </div>
+            </div>
+
+            <div class="experience-grid" style="margin-top: 30px;">
+                <div class="experience-header">
+                    <h3 class="job-title">Practicante de Desarrollo Frontend</h3>
+                    <div class="company">
+                        <span>Asstic E.I.R.L.</span>
+                    </div>
+                    <div class="date-badge">Agosto 2024 – Abril 2025</div>
+                    
+                </div>
+
+                <div class="experience-content">
+                    <p class="job-description">
+                        Desarrollo del frontend de Copiloto UDH, plataforma para la gestión integral de titulación universitaria. Implementación de interfaces intuitivas, conexión con APIs, colaboración en análisis funcional, pruebas y mejoras de la experiencia de usuario
+                    </p>
+                   
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="proyectos">
+            <h2 class="section-title">
+                <span class="section-icon"><i class="fas fa-code"></i></span>
+                Proyectos Destacados
+            </h2>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="./puntoverde.png" alt="E-commerce Ferias Agrícolas" class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://feriapuntoverde.com/tienda" class="project-link" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">E-commerce Ferias Agrícolas</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">Tailwind</span>
+                        </div>
+                        <p class="project-description">
+                            Plataforma de Comercio Electrónico para Ferias Agrícolas: Proyecto de tesis que integra catálogo de productos, pasarela de pago y gestión de pedidos para productores agrícolas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="./copiudh.png" alt="Copiloto UDH" class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://copiloto.udh.edu.pe/titulacion/login" class="project-link" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Copiloto UDH</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">Tailwind</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                        <p class="project-description">
+                            Sistema integral de gestión de trámites de titulación universitaria. Plataforma que optimiza todo el proceso desde la solicitud hasta la entrega del título, con interfaces intuitivas y seguimiento en tiempo real.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="./ubuntu.png" alt="Plataforma para Psicólogos" class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Plataforma para Gestión de Psicólogos</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">Tailwind</span>
+                        </div>
+                        <p class="project-description">
+                            Aplicación web para gestión de historias clínicas y seguimiento de pacientes. 
+                            Diseñado para optimizar el trabajo de profesionales de la salud mental.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="./pacifico.png" alt="Hostal Pacifico" class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://hostalpacifico.com/" class="project-link" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Página web para Hostal Pacifico</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Tailwind</span>
+                        </div>
+                        <p class="project-description">
+                            Sitio web informativo para hostal con sistema de reservas integrado con WhatsApp 
+                            para generar mensajes personalizados automáticamente.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="sobre-mi" class="about-section">
+            <h2 class="section-title">
+                <span class="section-icon"><i class="fas fa-user"></i></span>
+                Sobre mí
+            </h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Mi nombre es <strong>Marycielo Martel</strong>. Bachiller en <strong>Ingeniería de Sistemas e Informática</strong> 
+                        por la Universidad de Huánuco (UDH).
+                    </p>
+                    <p>
+                        Durante mi etapa académica, he alcanzado logros significativos, como la publicación de un 
+                        <strong>artículo científico en LACCEI 2025</strong> sobre el sistema "Copiloto UDH", además de 
+                        participar en una <strong>pasantía académica internacional</strong> en el Tecnológico de Antioquia, 
+                        Medellín, Colombia.
+                    </p>
+                    <p>
+                        Actualmente, me desempeño como <strong>Desarrolladora Web Full Stack</strong>, complementando mi trabajo 
+                        con conocimientos en Diseño UX/UI, lo que aporta un valor añadido a cada uno de mis proyectos.
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-top: 30px;">
+                        <div style="font-size: 2rem;">💻</div>
+                        <div style="font-size: 2rem; color: var(--accent);">💖</div>
+                        <div style="font-size: 2rem;">🚀</div>
+                    </div>
+                </div>
+                
+                <div class="about-image-container">
+                    <img src="marycielo.jpeg" alt="Marycielo Martel" class="about-profile-image">
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Marycielo Martel</div>
+                <p class="footer-text">Desarrolladora Web Full Stack & Diseñadora UX/UI</p>
+                <p class="footer-text">© 2025 - Hecho con <i class="fas fa-heart" style="color: var(--accent-alt);"></i> por Marycielo</p>
+                <div class="footer-social">
+                    <a href="mailto:marycielozmartel@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/Mary22Martel" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/marycielo-martel/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://wa.me/51971840637" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
         </div>
     </footer>
+<!-- 
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a> -->
 
     <script>
-        // Smooth scrolling
+        // Navigation functionality
+        const navContainer = document.getElementById('navContainer');
+        const navTabs = document.querySelectorAll('.nav-tab');
+        const sections = document.querySelectorAll('section[id]');
+        const backToTop = document.getElementById('backToTop');
+        const body = document.body;
+        const themeToggle = document.getElementById('themeToggle');
+        let isDarkMode = true;
+
+        function updateNavigation() {
+            // Add/remove scrolled class based on scroll position
+            if (window.scrollY > 100) {
+                navContainer.style.top = '10px';
+                navContainer.style.backdropFilter = 'blur(20px)';
+            } else {
+                navContainer.style.top = '20px';
+                navContainer.style.backdropFilter = 'blur(10px)';
+            }
+
+            // Update active tab
+            let current = 'experiencia'; // default
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navTabs.forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.getAttribute('href') === '#' + current) {
+                    tab.classList.add('active');
+                }
+            });
+
+            // Show/hide back to top button
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+
+        // Smooth scrolling for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -324,6 +1254,22 @@
                 }
             });
         });
+
+        // Theme toggle functionality
+        themeToggle.addEventListener('click', function() {
+            isDarkMode = !isDarkMode;
+            
+            if (isDarkMode) {
+                body.classList.remove('light-mode');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                body.classList.add('light-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+
+        window.addEventListener('scroll', updateNavigation);
+        updateNavigation();
     </script>
 </body>
 </html>
